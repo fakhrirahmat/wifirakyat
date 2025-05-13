@@ -6,8 +6,8 @@
     $alasan = get_alasan_data();
     $promotion = get_promotion_data();
     $installation = get_installation_data();
-    $testimonials = get_testimonial();
-    $testimonial2 = get_testimonial2_data();
+    $infopromo = get_infopromo_data();
+    $testimoni = get_testimoni_data();
     $infopaket = get_infopaket_data('')->firstWhere('id', 1);
     $setting = get_setting_data();
 @endphp
@@ -164,18 +164,21 @@
             </div>
         </section><!-- /Services Section -->
 
+        {{-- <h2> Nikmati Internet Cepat Dirumah Kamu </h2>
+        <p>Mengakses internet lancar dengan harga yang lebih terjangkau, kami siap membantu kamu menikmati
+            kenyamanan browsing hingga streaming.</p>
+             <div class="badge-offer">Penawaran Spesial</div>
+                            <div class="badge-speed">Mulai Dari <strong>15 MB</strong></div> --}}
+
         <section id="internet-promo" class="internet-promo section">
             <div class="container d-flex align-items-center justify-content-between">
                 <div class="promo-content">
-                    {{-- @if ($testimonials)
-                        <h2> {{ $testimonials->title }} </h2>
-                        <p>{!! strip_tags($testimonials->description) !!}</p>
+                    @if ($infopromo)
+                        <h2> {{ $infopromo->title }} </h2>
+                        <p>{!! strip_tags($infopromo->description) !!}</p>
                     @else
-                        <h2>data testimonial tidak ditemukan</h2>
-                    @endif --}}
-                    <h2> Nikmati Internet Cepat Dirumah Kamu </h2>
-                    <p>Mengakses internet lancar dengan harga yang lebih terjangkau, kami siap membantu kamu menikmati
-                        kenyamanan browsing hingga streaming.</p>
+                        <h2>data infopromo tidak ditemukan</h2>
+                    @endif
                     <?php if($infopaket): ?>
                     <p class="price">Rp. <span class="highlight"><?php echo e($infopaket->pricing); ?></span> / Bulan</p>
                     <?php else: ?>
@@ -190,49 +193,19 @@
                     @endif
                 </div>
                 <div class="promo-image">
-                    <div class="image-container">
-                        <img src="assets/img/services-1.jpg" alt="Promo Internet" class="img-fluid">
-                        {{-- <div class="badge-offer">Penawaran Spesial</div>
-                        <div class="badge-speed">Mulai Dari <strong>15 MB</strong></div> --}}
-                    </div>
+                    @if ($infopromo)
+                        <div class="container">
+                            <img src="{{ Storage::url($infopromo->image_url) }} " alt="Promo Internet"
+                                class="img-fluid">
+                        @else
+                            <h2>data infopromo tidak ditemukan</h2>
+                    @endif
                 </div>
+            </div>
             </div>
         </section>
 
-        {{-- <!-- Alt Services Section -->
-        <section id="alt-services" class="alt-services section">
-            <!-- Section Title -->
-            <div class="container section-title">
-                <h2>{{ $jumbotron3->title }}</h2>
-                <p>{!! strip_tags($jumbotron3->description) !!}</p>
-            </div><!-- End Section Title -->
-
-            @if (isset($testimonials) && $testimonials->isNotEmpty())
-                <div class="container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="row gy-4">
-                        @foreach ($testimonials as $item)
-                            <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
-                                <div class="service-item position-relative">
-                                    <div class="img">
-                                        <img src="{{ Storage::url($item->image_url) }}" class="img-fluid"
-                                            alt="Testimonial Image">
-                                    </div>
-                                    <div class="details">
-                                        <a href="" class="stretched-link">
-                                            <h3>{{ $item->title }}</h3>
-                                        </a>
-                                        <p>{!! strip_tags($item->description) !!}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            @endif
-        </section><!-- /Alt Services Section --> --}}
-
-
-        @if ($testimonial2->isNotEmpty())
+        @if ($testimoni->isNotEmpty())
             <section id="testimonials" class="testimonials section dark-background">
                 <img src="{{ asset('assets/img/testimonials-bg.jpg') }}" class="testimonials-bg" alt="">
                 <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -253,7 +226,7 @@
                   }
                 </script>
                         <div class="swiper-wrapper">
-                            @foreach ($testimonial2 as $item)
+                            @foreach ($testimoni as $item)
                                 <div class="swiper-slide">
 
                                     <div class="testimonial-item">
@@ -268,7 +241,7 @@
                                         </div>
                                         <p>
                                             <i class="bi bi-quote quote-icon-left"></i>
-                                            <span>{{ $item->pesan }}</span>
+                                            <span>{!! strip_tags($item->pesan) !!}</span>
                                             <i class="bi bi-quote quote-icon-right"></i>
                                         </p>
                                     </div>

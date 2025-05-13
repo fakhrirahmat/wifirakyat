@@ -2,16 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Model;
 
-class Testimonial2 extends Model
+class testimoni extends Model
 {
-    use HasFactory;
-
-    protected $table = 'testimonial2s'; // Sesuaikan jika nama tabel berbeda
-
+    protected $table = 'testimonis'; // Sesuaikan jika nama tabel berbeda
     protected $fillable = ['image_url', 'nama', 'jabatan', 'pesan'];
 
     public static function boot()

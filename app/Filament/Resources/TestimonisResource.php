@@ -2,26 +2,25 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\Testimonial2Resource\Pages;
-use App\Filament\Resources\Testimonial2Resource\RelationManagers;
-use App\Models\Testimonial2;
+use App\Filament\Resources\TestimonisResource\Pages;
+use App\Filament\Resources\TestimonisResource\RelationManagers;
+use App\Models\testimoni;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
+use Illuminate\Support\Facades\Storage;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Model;
 
-class Testimonial2Resource extends Resource
+class TestimonisResource extends Resource
 {
-    protected static ?string $model = Testimonial2::class;
     protected static ?string $navigationGroup = 'Index';
+    protected static ?string $model = testimoni::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-flag';
 
     public static function form(Form $form): Form
     {
@@ -30,7 +29,7 @@ class Testimonial2Resource extends Resource
                 Card::make()->schema([
                     Forms\Components\FileUpload::make('image_url')
                         ->disk('public')
-                        ->directory('uploads/testimonials')
+                        ->directory('uploads/testimoni')
                         ->preserveFilenames()
                         ->deleteUploadedFileUsing(function ($file, $record) {
                             if ($record && $record->image_url) {
@@ -45,7 +44,7 @@ class Testimonial2Resource extends Resource
                     Forms\Components\TextInput::make('jabatan')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\Textarea::make('pesan')
+                    Forms\Components\RichEditor::make('pesan')
                         ->required()
                         ->columnSpanFull(),
                 ])
@@ -56,12 +55,14 @@ class Testimonial2Resource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image_url')
-                    ->searchable(),
+                Tables\Columns\ImageColumn::make('image_url'),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('jabatan')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('pesan')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50), // membatasi 50 karakter
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -94,9 +95,9 @@ class Testimonial2Resource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTestimonial2s::route('/'),
-            'create' => Pages\CreateTestimonial2::route('/create'),
-            'edit' => Pages\EditTestimonial2::route('/{record}/edit'),
+            'index' => Pages\ListTestimonis::route('/'),
+            'create' => Pages\CreateTestimonis::route('/create'),
+            'edit' => Pages\EditTestimonis::route('/{record}/edit'),
         ];
     }
 }

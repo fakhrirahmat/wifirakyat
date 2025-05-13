@@ -55,6 +55,9 @@ class TentangkamiResource extends Resource
                 Tables\Columns\ImageColumn::make('image_url'),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50), // membatasi 50 karakter
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -88,8 +91,12 @@ class TentangkamiResource extends Resource
     {
         return [
             'index' => Pages\ListTentangkamis::route('/'),
-            'create' => Pages\CreateTentangkami::route('/create'),
+            // 'create' => Pages\CreateTentangkami::route('/create'),
             'edit' => Pages\EditTentangkami::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return false; // Menonaktifkan fitur tambah data
     }
 }

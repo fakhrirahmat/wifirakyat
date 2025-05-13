@@ -19,7 +19,7 @@ class InfopaketResource extends Resource
     protected static ?string $navigationGroup = 'Paket Internet';
     protected static ?string $model = Infopaket::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-information-circle';
+    protected static ?string $navigationIcon = 'heroicon-s-rocket-launch';
 
     public static function form(Form $form): Form
     {
@@ -47,6 +47,9 @@ class InfopaketResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pricing')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50), // membatasi 50 karakter
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -80,7 +83,7 @@ class InfopaketResource extends Resource
     {
         return [
             'index' => Pages\ListInfopakets::route('/'),
-            'create' => Pages\CreateInfopaket::route('/create'),
+            // 'create' => Pages\CreateInfopaket::route('/create'),
             'edit' => Pages\EditInfopaket::route('/{record}/edit'),
         ];
     }

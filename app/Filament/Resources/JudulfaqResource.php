@@ -16,10 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class JudulfaqResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Index';
+    protected static ?string $navigationGroup = 'FAQ';
     protected static ?string $model = Judulfaq::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-bars-3';
 
     public static function form(Form $form): Form
     {
@@ -45,6 +45,12 @@ class JudulfaqResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50), // membatasi 50 karakter
+                Tables\Columns\TextColumn::make('isi')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50), // membatasi 50 karakter
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -78,8 +84,12 @@ class JudulfaqResource extends Resource
     {
         return [
             'index' => Pages\ListJudulfaqs::route('/'),
-            'create' => Pages\CreateJudulfaq::route('/create'),
+            // 'create' => Pages\CreateJudulfaq::route('/create'),
             'edit' => Pages\EditJudulfaq::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return false; // Menonaktifkan fitur tambah data
     }
 }

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FaqResource extends Resource
 {
+    protected static ?string $navigationGroup = 'FAQ';
     protected static ?string $model = Faq::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-chat-bubble-left-right';
@@ -42,6 +43,8 @@ class FaqResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50) // membatasi 50 karakter
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

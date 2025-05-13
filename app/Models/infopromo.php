@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class infopromo extends Model
 {
     use HasFactory;
-    protected $table = 'infopaket'; // Sesuaikan jika nama tabel berbeda
+    protected $table = 'infopromos'; // Sesuaikan jika nama tabel berbeda
 
     protected $fillable = ['image_url', 'title', 'description', 'judul_tombol'];
 

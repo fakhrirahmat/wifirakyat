@@ -85,8 +85,12 @@ class PromotionResource extends Resource
     {
         return [
             'index' => Pages\ListPromotions::route('/'),
-            'create' => Pages\CreatePromotion::route('/create'),
+            // 'create' => Pages\CreatePromotion::route('/create'),
             'edit' => Pages\EditPromotion::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return false; // Menonaktifkan fitur tambah data
     }
 }

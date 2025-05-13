@@ -47,6 +47,9 @@ class InstallationResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50), // membatasi 50 karakter
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -80,8 +83,12 @@ class InstallationResource extends Resource
     {
         return [
             'index' => Pages\ListInstallations::route('/'),
-            'create' => Pages\CreateInstallation::route('/create'),
+            // 'create' => Pages\CreateInstallation::route('/create'),
             'edit' => Pages\EditInstallation::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return false; // Menonaktifkan fitur tambah data
     }
 }

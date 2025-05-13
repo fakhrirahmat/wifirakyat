@@ -21,7 +21,7 @@ class JumbotronResource extends Resource
 {
     protected static ?string $model = Jumbotron::class;
     protected static ?string $navigationGroup = 'Index';
-    protected static ?string $navigationIcon = 'heroicon-s-square-3-stack-3d';
+    protected static ?string $navigationIcon = 'heroicon-s-bars-2';
 
     public static function form(Form $form): Form
     {
@@ -51,6 +51,8 @@ class JumbotronResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('post_as'),
                 Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50) // membatasi 50 karakter
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -84,8 +86,12 @@ class JumbotronResource extends Resource
     {
         return [
             'index' => Pages\ListJumbotrons::route('/'),
-            'create' => Pages\CreateJumbotron::route('/create'),
+            // 'create' => Pages\CreateJumbotron::route('/create'),
             'edit' => Pages\EditJumbotron::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return false; // Menonaktifkan fitur tambah data
     }
 }

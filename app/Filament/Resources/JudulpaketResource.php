@@ -19,7 +19,7 @@ class JudulpaketResource extends Resource
     protected static ?string $navigationGroup = 'Paket Internet';
     protected static ?string $model = Judulpaket::class;
 
-    protected static ?string $navigationIcon = 'heroicon-s-cursor-arrow-ripple';
+    protected static ?string $navigationIcon = 'heroicon-s-bars-4';
 
     public static function form(Form $form): Form
     {
@@ -42,6 +42,9 @@ class JudulpaketResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50), // membatasi 50 karakter
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -75,8 +78,12 @@ class JudulpaketResource extends Resource
     {
         return [
             'index' => Pages\ListJudulpakets::route('/'),
-            'create' => Pages\CreateJudulpaket::route('/create'),
+            // 'create' => Pages\CreateJudulpaket::route('/create'),
             'edit' => Pages\EditJudulpaket::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return false; // Menonaktifkan fitur tambah data
     }
 }

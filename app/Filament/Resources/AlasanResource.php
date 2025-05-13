@@ -48,6 +48,8 @@ class AlasanResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50) // membatasi 50 karakter
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -82,8 +84,12 @@ class AlasanResource extends Resource
     {
         return [
             'index' => Pages\ListAlasans::route('/'),
-            'create' => Pages\CreateAlasan::route('/create'),
+            // 'create' => Pages\CreateAlasan::route('/create'),
             'edit' => Pages\EditAlasan::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return false; // Menonaktifkan fitur tambah data
     }
 }

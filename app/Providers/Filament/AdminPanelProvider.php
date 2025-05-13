@@ -20,8 +20,6 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\NavigationItem;
 use App\Filament\Resources\SponsorsResource;
-use App\Filament\Resources\Testimonial2Resource;
-use App\Filament\Resources\TestimonialsResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -37,9 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->resources([
-                SponsorsResource::class,
-                TestimonialsResource::class,
-                Testimonial2Resource::class,
+                SponsorsResource::class
             ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([

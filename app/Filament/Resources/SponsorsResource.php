@@ -22,14 +22,14 @@ class SponsorsResource extends Resource
     protected static ?string $navigationGroup = 'Index';
     protected static ?string $navigationIcon = 'heroicon-s-user-group';
 
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
-    public static function getNavigationBadgeTooltip(): ?string
-    {
-        return 'Total sponsor';
-    }
+    // public static function getNavigationBadge(): ?string
+    // {
+    //     return static::getModel()::count();
+    // }
+    // public static function getNavigationBadgeTooltip(): ?string
+    // {
+    //     return 'Total sponsor';
+    // }
 
     public static function form(Form $form): Form
     {

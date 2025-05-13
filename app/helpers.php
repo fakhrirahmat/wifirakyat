@@ -1,5 +1,6 @@
 <?php
 
+use App\Filament\Resources\TestimonisResource;
 use App\Models\alasan;
 use App\Models\faq;
 use App\Models\installation;
@@ -12,8 +13,9 @@ use App\Models\promotion;
 use App\Models\setting;
 use App\Models\sponsors;
 use App\Models\tentangkami;
-use App\Models\testimonial2;
-use App\Models\testimonials;
+// use App\Models\testimonial2;
+use App\Models\testimoni;
+use App\Models\infopromo;
 
 function get_jumbotron_data($key)
 {
@@ -42,15 +44,15 @@ function get_promotion_data()
     $data = promotion::all();
     return $data;
 }
-function get_testimonial()
+function get_testimoni_data()
 {
-    return testimonials::first();
+    return testimoni::all();
 }
-function get_testimonial2_data()
-{
-    $data = testimonial2::all();
-    return $data;
-}
+// function get_testimonial2_data()
+// {
+//     $data = testimonial2::all();
+//     return $data;
+// }
 function get_tentangkami_data()
 {
     return tentangkami::first();
@@ -78,4 +80,8 @@ function get_judulfaq_data()
 function get_faq_data()
 {
     return faq::all(); // Mengembalikan satu objek, bukan koleksi
+}
+function get_infopromo_data()
+{
+    return infopromo::first(); // Mengembalikan satu objek, bukan koleksi
 }

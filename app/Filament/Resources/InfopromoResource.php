@@ -20,7 +20,7 @@ class InfopromoResource extends Resource
     protected static ?string $navigationGroup = 'Index';
     protected static ?string $model = Infopromo::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-exclamation-triangle';
 
     public static function form(Form $form): Form
     {
@@ -58,6 +58,9 @@ class InfopromoResource extends Resource
                 Tables\Columns\ImageColumn::make('image_url'),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->formatStateUsing(fn($state) => strip_tags($state))
+                    ->limit(50), // membatasi 50 karakter
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -91,8 +94,12 @@ class InfopromoResource extends Resource
     {
         return [
             'index' => Pages\ListInfopromos::route('/'),
-            'create' => Pages\CreateInfopromo::route('/create'),
+            // 'create' => Pages\CreateInfopromo::route('/create'),
             'edit' => Pages\EditInfopromo::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return false; // Menonaktifkan fitur tambah data
     }
 }
