@@ -71,10 +71,51 @@
                                         <a href="{{ $setting->instagram_url }}"><i class="bi bi-instagram"></i></a>
                                         {{-- <a href="#"><i class="bi bi-skype"></i></a>
                 <a href="#"><i class="bi bi-linkedin"></i></a> --}}
+
+                                        <!-- End Contact Form -->
                                     </div>
                                 </div>
                             </div>
                         </div><!-- End Info Item -->
+
+                        {{-- <form action="{{ route('pengaduan.store') }}" method="POST" class="php-email-form"
+                            data-aos="fade-up" data-aos-delay="600">
+                            @csrf
+
+
+                            <div class="row gy-4">
+
+                                <div class="col-md-6">
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="Isi nama kamu!" required="">
+                                </div>
+
+                                <div class="col-md-6 ">
+                                    <input type="email" class="form-control" name="email"
+                                        placeholder="Isi email kamu!" required="">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="subject"
+                                        placeholder="Judul Pengaduan" required="">
+                                </div>
+
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Pesan apa yang ingin kamu kirim?"
+                                        required=""></textarea>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">Your message has been sent. Thank you!
+                                    </div>
+
+                                    <button type="submit">Send Message</button>
+                                </div>
+
+                            </div>
+                        </form> --}}
 
                     </div>
                 </div>
