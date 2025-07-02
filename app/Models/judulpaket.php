@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class judulpaket extends Model
+class Judulpaket extends Model
 {
     protected $fillable = ['title', 'description'];
 }

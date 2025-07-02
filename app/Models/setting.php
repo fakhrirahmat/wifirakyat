@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
 
-class setting extends Model
+class Setting extends Model
 {
     protected $table = 'settings'; // Sesuaikan jika nama tabel berbeda
 

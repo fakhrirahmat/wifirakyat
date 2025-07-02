@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TestimonisResource\Pages;
 use App\Filament\Resources\TestimonisResource\RelationManagers;
-use App\Models\testimoni;
+use App\Models\Testimoni;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Illuminate\Support\Facades\Storage;

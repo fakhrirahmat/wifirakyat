@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
 
-class testimoni extends Model
+class Testimoni extends Model
 {
     protected $table = 'testimonis'; // Sesuaikan jika nama tabel berbeda
     protected $fillable = ['image_url', 'nama', 'jabatan', 'pesan'];

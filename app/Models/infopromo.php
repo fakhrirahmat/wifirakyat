@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class infopromo extends Model
+class Infopromo extends Model
 {
     use HasFactory;
     protected $table = 'infopromos'; // Sesuaikan jika nama tabel berbeda

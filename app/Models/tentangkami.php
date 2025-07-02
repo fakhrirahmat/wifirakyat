@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Model;
 
-class tentangkami extends Model
+class Tentangkami extends Model
 {
     protected $table = 'tentangkamis'; // Sesuaikan jika nama tabel berbeda
 

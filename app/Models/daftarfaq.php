@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class daftarfaq extends Model
+class Daftarfaq extends Model
 {
     protected $fillable = ['title', 'description'];
 }

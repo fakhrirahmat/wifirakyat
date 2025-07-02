@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class sponsors extends Model
+class Sponsors extends Model
 {
     protected $fillable = ['logo', 'nama_sponsor', 'description'];
 }

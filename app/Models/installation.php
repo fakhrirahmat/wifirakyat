@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class installation extends Model
+class Installation extends Model
 {
     protected $fillable = ['icon', 'title', 'description'];
 }
