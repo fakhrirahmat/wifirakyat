@@ -1,52 +1,52 @@
 <?php
 
 use App\Filament\Resources\TestimonisResource;
-use App\Models\alasan;
-use App\Models\faq;
-use App\Models\installation;
-use App\Models\jumbotron;
-use App\Models\infopaket;
-use App\Models\judulfaq;
+use App\Models\Alasan;
+use App\Models\Faq;
+use App\Models\Installation;
+use App\Models\Jumbotron;
+use App\Models\Infopaket;
+use App\Models\Judulfaq;
 use App\Models\judulpaket;
-use App\Models\keunggulankami;
-use App\Models\promotion;
-use App\Models\setting;
-use App\Models\sponsors;
-use App\Models\tentangkami;
+use App\Models\Keunggulankami;
+use App\Models\Promotion;
+use App\Models\Setting;
+use App\Models\Sponsors;
+use App\Models\Tentangkami;
 // use App\Models\testimonial2;
-use App\Models\testimoni;
-use App\Models\infopromo;
+use App\Models\Testimoni;
+use App\Models\Infopromo;
 
 function get_jumbotron_data($key)
 {
-    $data = jumbotron::where('post_as', $key)->first();
+    $data = Jumbotron::where('post_as', $key)->first();
     if (isset($data)) {
         return $data;
     }
 }
 function get_sponsors()
 {
-    $data = sponsors::all();
+    $data = Sponsors::all();
     return $data;
 }
 function get_alasan_data()
 {
-    $data = alasan::all();
+    $data = Alasan::all();
     return $data;
 }
 function get_installation_data()
 {
-    return installation::all();
+    return Installation::all();
     return $data;
 }
 function get_promotion_data()
 {
-    $data = promotion::all();
+    $data = Promotion::all();
     return $data;
 }
 function get_testimoni_data()
 {
-    return testimoni::all();
+    return Testimoni::all();
 }
 // function get_testimonial2_data()
 // {
@@ -55,33 +55,33 @@ function get_testimoni_data()
 // }
 function get_tentangkami_data()
 {
-    return tentangkami::first();
+    return Tentangkami::first();
 }
 function get_keunggulankami_data()
 {
-    return keunggulankami::all(); // Mengembalikan satu objek, bukan koleksi
+    return Keunggulankami::all(); // Mengembalikan satu objek, bukan koleksi
 }
 function get_infopaket_data()
 {
-    return infopaket::all(); // Mengembalikan satu objek, bukan koleksi
+    return Infopaket::all(); // Mengembalikan satu objek, bukan koleksi
 }
 function get_judulpaket_data()
 {
-    return judulpaket::first(); // Mengembalikan satu objek, bukan koleksi
+    return Judulpaket::first(); // Mengembalikan satu objek, bukan koleksi
 }
 function get_setting_data()
 {
-    return setting::first(); // Mengembalikan satu objek, bukan koleksi
+    return Setting::first(); // Mengembalikan satu objek, bukan koleksi
 }
 function get_judulfaq_data()
 {
-    return judulfaq::first(); // Mengembalikan satu objek, bukan koleksi
+    return Judulfaq::first(); // Mengembalikan satu objek, bukan koleksi
 }
 function get_faq_data()
 {
-    return faq::all(); // Mengembalikan satu objek, bukan koleksi
+    return Faq::all(); // Mengembalikan satu objek, bukan koleksi
 }
 function get_infopromo_data()
 {
-    return infopromo::first(); // Mengembalikan satu objek, bukan koleksi
+    return Infopromo::first(); // Mengembalikan satu objek, bukan koleksi
 }
