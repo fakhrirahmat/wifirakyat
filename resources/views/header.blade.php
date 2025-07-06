@@ -14,7 +14,7 @@
 
     <!-- Favicons -->
     {{-- @if ($setting) --}}
-    <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/favicon.ico') }}" rel="icon">
     <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
     {{-- @else
         <h2>icon tidak ditemukan</h2>

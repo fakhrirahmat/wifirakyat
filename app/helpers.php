@@ -7,7 +7,7 @@ use App\Models\Installation;
 use App\Models\Jumbotron;
 use App\Models\Infopaket;
 use App\Models\Judulfaq;
-use App\Models\judulpaket;
+use App\Models\Judulpaket;
 use App\Models\Keunggulankami;
 use App\Models\Promotion;
 use App\Models\Setting;
