@@ -48,7 +48,7 @@ class AuthController extends Controller
         }
 
         //Status pemasangan
-        $data['status'] = 'menunggu'; // atau pending, sesuai flowmu
+        $data['status'] = 'pending';
 
         // Simpan pelanggan
         $pelanggan = Pelanggan::create($data);
