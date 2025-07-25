@@ -17,13 +17,13 @@ class FormulirPengaduanResource extends Resource
 {
     protected static ?string $model = Pengaduan::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-s-envelope';
 
     // fitur penyembuni nav
-    public static function shouldRegisterNavigation(): bool
-    {
-        return false;
-    }
+    // public static function shouldRegisterNavigation(): bool
+    // {
+    //     return false;
+    // }
 
     public static function form(Form $form): Form
     {

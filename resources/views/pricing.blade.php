@@ -1,5 +1,6 @@
 @php
     $infopaket = get_infopaket_data('');
+    $setting = get_setting_data();
     $judulpaket = get_judulpaket_data('');
 @endphp
 <!DOCTYPE html>
@@ -35,7 +36,6 @@
             </div><!-- End Section Title -->
             @if ($infopaket->isNotEmpty())
                 <div class="container">
-
                     <div class="row gy-3">
                         @foreach ($infopaket as $item)
                             <div class="col-xl-4 col-lg-6" data-aos="fade-up"
@@ -47,13 +47,20 @@
                                         <li>{!! nl2br($item->description) !!}</li>
                                     </ul>
                                     <div class="btn-wrap">
-                                        <a href="#" class="btn-buy">Langganan</a>
+                                        @if ($setting && $setting->whatsapp_url)
+                                            <a href="{{ route('daftar') }}" class="btn-buy">Langganan</a>
+                                        @else
+                                            <span class="text-danger">URL WhatsApp belum tersedia</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-                    </div><!-- End Pricing Item -->
-
+                    </div>
+                </div>
+            @else
+                <div class="container">
+                    <p class="text-center">Belum ada paket internet yang tersedia saat ini.</p>
                 </div>
             @endif
         </section><!-- /Pricing Section -->

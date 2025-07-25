@@ -50,13 +50,14 @@
 
 <body class="index-page">
     <header id="header" class="header sticky-top">
+        {{-- <header id="header" class="header sticky-top" data-aos="fade-down" data-aos-duration="600" data-aos-once="true"> --}}
 
         @if ($setting)
             <div class="topbar d-flex align-items-center dark-background">
                 <div class="container d-flex justify-content-center">
                     <div class="contact-info d-flex align-items-center">
                         <i class="bi bi-person-plus d-flex align-items-center"><a
-                                href="{{ $setting->whatsapp_url }}">Berlangganan Sekarang!</a></i>
+                                href="{{ route('daftar') }}">Berlangganan Sekarang!</a></i>
                         <i class="bi bi bi-telephone-forward d-flex align-items-center ms-4"><a
                                 href="{{ $setting->whatsapp_url }}">{{ $setting->phone }}</a></i>
                     </div>
@@ -90,8 +91,13 @@
                             <li><a href="/faq" class="{{ Request::is('faq') ? 'active' : '' }}">FAQ</a></li>
                             <li><a href="/about" class="{{ Request::is('about') ? 'active' : '' }}">Tentang Kami</a>
                             </li>
-
                             <li><a href="/contact" class="{{ Request::is('contact') ? 'active' : '' }}">Kontak</a></li>
+
+                            {{-- ✅ Tambahan menu login & daftar --}}
+                            <li><a href="{{ route('daftar') }}"
+                                    class="{{ Request::is('daftar') ? 'active' : '' }}">Pendaftaran</a></li>
+                            {{-- <li><a href="{{ route('login') }}"
+                                    class="{{ Request::is('login') ? 'active' : '' }}">Login</a></li> --}}
                         </ul>
                         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                     </nav>
@@ -107,3 +113,13 @@
 </body>
 
 </html>
+<script>
+    document.addEventListener("scroll", function() {
+        const header = document.getElementById("header");
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+    });
+</script>

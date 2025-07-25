@@ -49,10 +49,10 @@
                             <div class="why-box" data-aos="zoom-out" data-aos-delay="200">
                                 <h3>{{ $item->title }}</h3>
                                 <p>{!! strip_tags($item->description) !!}</p>
-                                <div class="text-center" style="color:grey">
-                                    <a href="https://wa.me/{{ $item->no_hp }}"
-                                        class="more-btn"><span>{{ $item->nama_tombol }}</span> <i
-                                            class="bi bi-chevron-right"></i></a>
+                                <div class="mt-4 text-center">
+                                    <button onclick="window.location.href='{{ route('daftar') }}'" class="btn btn-dark">
+                                        {{ $item->nama_tombol }}
+                                    </button>
                                 </div>
                             </div>
                         </div><!-- End Why Box -->
@@ -134,8 +134,12 @@
         <section id="services" class="services section light-background">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2> {{ $jumbotron2->title }}</h2>
-                <p>{!! strip_tags($jumbotron2->description) !!}</p>
+                @if ($jumbotron2)
+                    <h2>{{ $jumbotron2->title }}</h2>
+                    <p>{!! strip_tags($jumbotron2->description) !!}</p>
+                @else
+                    <h2>Judul tidak tersedia</h2>
+                @endif
             </div><!-- End Section Title -->
 
             <div class="container">
@@ -148,7 +152,7 @@
                                     <div class="icon">
                                         <i class="{{ $item->icon }}"></i>
                                     </div>
-                                    <a href="https://wa.me/6285875888655" class="stretched-link">
+                                    <a href="{{ route('daftar') }}" class="stretched-link">
                                         <h3>{{ $item->title }}</h3>
                                     </a>
                                     <p>{!! strip_tags($item->description) !!} </p>
@@ -164,28 +168,25 @@
             </div>
         </section><!-- /Services Section -->
 
-        {{-- <h2> Nikmati Internet Cepat Dirumah Kamu </h2>
-        <p>Mengakses internet lancar dengan harga yang lebih terjangkau, kami siap membantu kamu menikmati
-            kenyamanan browsing hingga streaming.</p>
-             <div class="badge-offer">Penawaran Spesial</div>
-                            <div class="badge-speed">Mulai Dari <strong>15 MB</strong></div> --}}
-
         <section id="internet-promo" class="internet-promo section">
             <div class="container d-flex align-items-center justify-content-between">
                 <div class="promo-content">
+
                     @if ($infopromo)
                         <h2> {{ $infopromo->title }} </h2>
                         <p>{!! strip_tags($infopromo->description) !!}</p>
                     @else
                         <h2>data infopromo tidak ditemukan</h2>
                     @endif
-                    <?php if($infopaket): ?>
-                    <p class="price">Rp. <span class="highlight"><?php echo e($infopaket->pricing); ?></span> / Bulan</p>
-                    <?php else: ?>
-                    <p class="price">Paket tidak ditemukan</p>
-                    <?php endif; ?>
+
+                    @if ($infopaket)
+                        <p class="price">Rp. <span class="highlight">{{ $infopaket->pricing }}</span> / Bulan</p>
+                    @else
+                        <p class="price">Paket tidak ditemukan</p>
+                    @endif
+
                     @if ($setting)
-                        <a class="btn btn-promo" href="{{ $setting->whatsapp_url }}">
+                        <a class="btn btn-promo" href="{{ route('daftar') }}">
                             Berlangganan Sekarang!
                         </a>
                     @else
@@ -260,6 +261,35 @@
     <!-- ======= Footer ======= -->
     @include('footer')
     <!-- End Footer -->
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Re-init AOS
+                    AOS.refresh();
+
+                    // Re-init Swiper jika perlu
+                    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+                        if (!swiperElement.classList.contains('swiper-initialized')) {
+                            let configElement = swiperElement.querySelector(".swiper-config");
+                            if (configElement) {
+                                let config = JSON.parse(configElement.innerHTML.trim());
+                                new Swiper(swiperElement, config);
+                            }
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe testimoni dan section lainnya
+        document.querySelectorAll('#testimonials, #services').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 
 
 

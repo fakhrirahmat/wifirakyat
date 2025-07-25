@@ -12,8 +12,20 @@
                     <div class="footer-contact pt-3">
                         <p>{!! nl2br($setting->alamat) !!}</p>
 
-                        <p class="mt-3"><strong>No. Telephone:</strong> <span>{{ $setting->phone }}</span></p>
-                        <p><strong>Email:</strong> <span>{{ $setting->email }}</span></p>
+                        {{-- No. Telepon di-link ke WhatsApp (atau tel:) --}}
+                        <p class="mt-3">
+                            <strong>No. Telephone:</strong>
+                            <a href="{{ $setting->whatsapp_url }}" target="_blank">
+                                <span>{{ $setting->phone }}</span>
+                            </a>
+                        </p>
+                        {{-- Email di-link menggunakan mailto: --}}
+                        <p>
+                            <strong>Email:</strong>
+                            <a href="mailto:{{ $setting->email }}">
+                                <span>{{ $setting->email }}</span>
+                            </a>
+                        </p>
                     </div>
                     <div class="social-links d-flex mt-4">
                         <a href="{{ $setting->facebook_url }}"><i class="bi bi-facebook"></i></a>
@@ -65,7 +77,7 @@
                 <!-- You can delete the links only if you've purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
     @else
@@ -93,3 +105,8 @@
 
 <!-- Main JS File -->
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // hapus bagian ini
+    });
+</script>
